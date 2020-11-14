@@ -11,6 +11,4 @@ const MenuBar = () => (
   </Menu>
 )
 
-
-
 export default MenuBar

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { Search, Dropdown, Container } from 'semantic-ui-react'
 
@@ -27,6 +28,11 @@ const SearchContacts = ({searchForm, setSearchForm}) => {
       <Search onSearchChange={handleFilterChange} name="searchValue" disabled={!searchForm.dropDown} />
     </Container>
   )
+}
+
+SearchContacts.DefaultForm = {
+  searchForm: PropTypes.object,
+  setSearchForm: PropTypes.func
 }
 
 export default SearchContacts

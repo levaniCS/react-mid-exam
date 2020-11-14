@@ -1,6 +1,6 @@
 import React, { useState} from 'react'
 import { Button, List, Modal } from 'semantic-ui-react'
-
+import PropTypes from 'prop-types'
 import ModalWithForm from '../components/Modal'
 // DATABASE
 import { deleteContact } from '../dbService'
@@ -55,5 +55,12 @@ const ListItem = (props) => {
     </List.Item>
   )
 }
+
+ListItem.DefaultForm = {
+  contactList: PropTypes.array,
+  setContactList: PropTypes.func,
+  item: PropTypes.object,
+}
+
 
 export default  ListItem
