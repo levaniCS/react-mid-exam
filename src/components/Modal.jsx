@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal } from 'semantic-ui-react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import ProductsForm from '../utils/defaultForm'
 
 const PageModal = (props) => (
@@ -18,10 +18,10 @@ const PageModal = (props) => (
 )
 
 PageModal.DefaultForm = {
-  setOpen: PropTypes.object,
-  open: PropTypes.bool,
-  trigger: PropTypes.bool,
-  addOrEdit: PropTypes.string
+  setOpen: propTypes.object,
+  open: propTypes.bool,
+  trigger: propTypes.bool,
+  addOrEdit: propTypes.string
 }
 
 export default PageModal
