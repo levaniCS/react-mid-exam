@@ -1,5 +1,5 @@
 import React from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 import { Search, Dropdown, Container } from 'semantic-ui-react'
 
@@ -30,9 +30,9 @@ const SearchContacts = ({searchForm, setSearchForm}) => {
   )
 }
 
-SearchContacts.DefaultForm = {
-  searchForm: propTypes.object,
-  setSearchForm: propTypes.func
+SearchContacts.propTypes = {
+  searchForm: PropTypes.object,
+  setSearchForm: PropTypes.func
 }
 
 export default SearchContacts

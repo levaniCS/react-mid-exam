@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { Button, ButtonGroup, Form } from 'semantic-ui-react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { useForm } from '../utils/useForm'
 import { v4 as uuid_v4 } from "uuid";
 // DATABASE
@@ -88,12 +88,12 @@ const DefaultForm = (props) => {
   )
 }
 
-DefaultForm.DefaultForm = {
-  setOpen: propTypes.func,
-  contact: propTypes.func,
-  setContactList: propTypes.func,
-  addOrEdit: propTypes.string.isRequired,
-  title: propTypes.string.isRequired
+DefaultForm.propTypes = {
+  setOpen: PropTypes.func,
+  contact: PropTypes.func,
+  setContactList: PropTypes.func,
+  addOrEdit: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 }
 
 export default DefaultForm

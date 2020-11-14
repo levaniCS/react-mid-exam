@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const validateProductsInput = ({
   username,
   email,
@@ -21,14 +22,19 @@ export const validateProductsInput = ({
 
   if(phone.trim() === '') {
     errors.phone = 'ნომერი არ უნდა იყოს ცარიელი'
+  } else {
+    const regEx = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i
+    if (!phone.match(regEx)) {
+      errors.email = 'ნომერი არ არის ვალიდური';
+    }
   }
+
   if(phone.trim().length < 8) {
     errors.phone = 'ნომრის ციფრთა რაოდენობა მეტი უნდა იყოს 8ზე'
   }
   if(phone.trim().length > 20 ) {
     errors.phone = 'ნომრის ციფრთა რაოდენობა არ უნდა აღემატებოდეს 20ს'
   }
-  
 
   return {
     errors,

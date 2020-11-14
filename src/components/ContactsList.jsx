@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { List } from 'semantic-ui-react'
 import ContactsListItem  from './ContactsListItem'
 
@@ -18,9 +18,9 @@ const ListItemsFloated = ({contactList, setContactList}) => {
   )
 }
 
-ListItemsFloated.DefaultForm = {
-  contactList: propTypes.array,
-  setContactList: propTypes.func
+ListItemsFloated.propTypes = {
+  contactList: PropTypes.array,
+  setContactList: PropTypes.func
 }
 
 export default ListItemsFloated
