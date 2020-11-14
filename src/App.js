@@ -8,8 +8,7 @@ import './App.css';
 const App = () => (
   <Router>
     <Container>
-      <Route exact path="/" render={<h3>i will be in /</h3>}/>
-      <Route exact path="/login" render={<h3>dddddddddddd</h3>}/>
+      <h1>Hello huys</h1>
     </Container>
   </Router>
 )
