@@ -23,7 +23,9 @@ export const useForm = (callback, initialState = {}) => {
   useEffect(() => {
     // Check to see if there are no errors this will run only when submitting
     if (Object.keys(errors).length === 0 && loading) callback()
-    else setTimeout(() => {
+    
+
+    setTimeout(() => {
       setLoading(false)
     }, 300);
   }, [errors])

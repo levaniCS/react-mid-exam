@@ -1,23 +1,30 @@
-import React from 'react'
-import { Container, Tab } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Header, Container } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 // COMPONENTS
 import PageHeader from './components/Header'
-import ProductsForm from './utils/defaultForm'
+import Modal from './components/Modal'
+import ContactsList from './components/ContactsList'
+import Search from './components/Search'
 
-const panes = [
-  { menuItem: 'Tab 1', render: () => <Tab.Pane><ProductsForm title="First tab content"/></Tab.Pane> },
-  { menuItem: 'Tab 2', render: () => <Tab.Pane><ProductsForm title="Second tab content"/></Tab.Pane> },
-]
 
-const App = () => (
-  <Container>
-    <PageHeader />
-    <h1>Hello huys</h1>
-    <Tab panes={panes} />
-  </Container>
-)
+const App = () => {
+  const [open, setOpen] = useState(false)
+  return (
+    <Container>
+      <PageHeader />
+      <div style={{ display: 'flex', justifyContent: 'space-around'}}>
+        <Search float="right" style={{ margin: '20px 0'}} />
+        <Modal addOrEdit="დამატება" trigger open={open} setOpen={setOpen} />
+      </div>
+      <Header block dividing>კონტაქტების სია</Header>
+      <Header.Content>
+        <ContactsList />
+      </Header.Content>
+    </Container>
+  )
+}
 
 export default App;

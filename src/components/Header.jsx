@@ -4,7 +4,8 @@ import { Menu } from 'semantic-ui-react'
 const MenuBar = () => (
   <Menu pointing secondary size="massive" color="orange">
     <Menu.Item
-      name="Hello Friend"
+      className="border-bottom-0"
+      name='Nav bar'
       active
     />
   </Menu>

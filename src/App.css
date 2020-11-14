@@ -22,3 +22,14 @@
 .ui.teal.buttos .button:focus {
   background-color: #00b5ad;
 }
+
+.ui.primary.button {
+  height: 100%;
+}
+
+
+.ui.form .error.message, 
+.ui.form .success.message, 
+.ui.form .warning.message {
+  display: block;
+}

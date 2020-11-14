@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form } from 'semantic-ui-react'
+import { Button, ButtonGroup, Form } from 'semantic-ui-react'
 
 import { useForm } from '../utils/useForm'
 
@@ -9,8 +9,7 @@ const DefaultForm = (props) => {
   const { values, loading, handleChange, onSubmit, errors } = useForm(handleSubmit, {
     username: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    phone: '',
   })
   
 
@@ -19,8 +18,8 @@ const DefaultForm = (props) => {
       <Form onSubmit={onSubmit} noValidate className={loading ? 'loading': ''}>
         <h1>{props.title}</h1>
         <Form.Input 
-          label="Username"
-          placeholder="Username..."
+          label="დასახელება"
+          placeholder="დასახელება..."
           name="username"
           type="text"
           error={!!errors?.username}
@@ -28,8 +27,8 @@ const DefaultForm = (props) => {
           onChange={handleChange}
         />
         <Form.Input 
-          label="Email"
-          placeholder="Email..."
+          label="ელ.ფოსტა"
+          placeholder="ელ.ფოსტა..."
           name="email"
           type="email"
           error={!!errors?.email}
@@ -37,34 +36,40 @@ const DefaultForm = (props) => {
           onChange={handleChange}
         />
         <Form.Input 
-          label="Password"
-          placeholder="Password..."
-          name="password"
-          type="password"
-          error={!!errors?.password}
-          value={values.password}
+          label="ტელეფონი"
+          placeholder="ტელეფონი..."
+          name="phone"
+          type="tel"
+          error={!!errors?.phone}
+          value={values.phone}
           onChange={handleChange}
         />
-        <Form.Input 
-          label="Confirm Password"
-          placeholder="Confirm Password..."
-          name="confirmPassword"
-          type="password"
-          error={!!errors?.confirmPassword}
-          value={values.confirmPassword}
-          onChange={handleChange}
-        />
-        <Button type="submit" primary>Submit</Button>
+        {Object.keys(errors).length > 0 && (
+          <div className="ui error message">
+            <ul className="list">
+              {Object.values(errors).map(val => (
+                <li key={val}>{val}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <ButtonGroup floated fluid>
+          <Button color='black' onClick={() => props.setOpen(false)}>
+            დახურვა
+          </Button>
+          <Button
+            type="submit"
+            content={props.addOrEdit}
+            labelPosition='right'
+            icon='checkmark'
+            onClick={(e) => {
+              onSubmit(e)
+              // props.setOpen(false)
+            }}
+            positive
+          />
+        </ButtonGroup>
       </Form>
-      {Object.keys(errors).length > 0 && (
-        <div className="ui error message">
-          <ul className="list">
-            {Object.values(errors).map(val => (
-              <li key={val}>{val}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   )
 }
