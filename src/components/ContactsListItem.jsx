@@ -24,7 +24,7 @@ const ListItem = (props) => {
       <ModalWithForm
         setContactList={setContactList}
         contact={contact} 
-        addOrEdit="ედითი"  
+        addOrEdit="ცვლილება"  
         open={open} 
         setOpen={setOpen}
       />
@@ -44,7 +44,7 @@ const ListItem = (props) => {
       </Modal>
       <List.Content floated='right'>
         <Button color="red" onClick={() => setIsDelete(true)}>წაშლა</Button>
-        <Button color="orange" onClick={() => setOpen(true)}>შეცვლა</Button>
+        <Button color="orange" onClick={() => setOpen(true)}>ცვლილება</Button>
       </List.Content>
       <List.Description>
         <p>აიდი: {contact.id}</p>
