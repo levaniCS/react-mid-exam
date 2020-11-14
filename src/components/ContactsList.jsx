@@ -1,18 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { List } from 'semantic-ui-react'
 import ContactsListItem  from './ContactsListItem'
 
-const testArray = [
-  { key: 1},
-  { key: 2},
-  { key: 3},
-  { key: 4},
-  { key: 5},
-  { key: 6},
-]
+const ListItemsFloated = ({contactList, setContactList}) => {
+  
 
-const ListItemsFloated = () => {
-  const renderContactsList = () => testArray.map(item => <ContactsListItem key={item.key} />)
+
+  const renderContactsList = () => {
+    if(contactList.length) {
+      return contactList.map(item => <ContactsListItem setContactList={setContactList} contactList={contactList}  key={item.id} item={item} />)
+    }
+    return <p>კონტაქტები ცარიელია</p>
+  }
   return (
     <List divided verticalAlign='middle'>
       {renderContactsList()}

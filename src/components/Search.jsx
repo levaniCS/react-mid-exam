@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { Search, Dropdown, Container } from 'semantic-ui-react'
 
@@ -8,20 +8,23 @@ const Options = [
   { key: 3, value: 'username', text: 'დასახელება' },
 ]
 
-const SearchContacts = (props) => {
-  const [selected, setSelected] = useState(Options[2].value)
+const SearchContacts = ({searchForm, setSearchForm}) => {
+  const handleFilterChange = (e, { value, name }) => {
+    setSearchForm(prevState => ({...prevState, [name]: value }))
+  }
 
-  const handleFilterChange = (e, { value }) => setSelected(value)
   return (
     <Container>
       <Dropdown 
+        style={{ margin: '1rem 0'}}
+        name="dropDown"
         placeholder='მოძებნე ველის მიხედვით'
         clearable 
         onChange={handleFilterChange}
         options={Options} 
         selection
-        value={selected} />
-      <Search disabled={!selected}  {...props} />
+        value={searchForm.dropDown} />
+      <Search onSearchChange={handleFilterChange} name="searchValue" disabled={!searchForm.dropDown} />
     </Container>
   )
 }

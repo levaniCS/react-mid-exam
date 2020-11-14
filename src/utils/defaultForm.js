@@ -1,16 +1,33 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { Button, ButtonGroup, Form } from 'semantic-ui-react'
-
 import { useForm } from '../utils/useForm'
+import { v4 as uuid_v4 } from "uuid";
+// DATABASE
+import {addContact, editContact, getContacts} from '../dbService'
 
 const DefaultForm = (props) => {
-  const handleSubmit = () => {}
-
-  const { values, loading, handleChange, onSubmit, errors } = useForm(handleSubmit, {
+  const ContactsList = getContacts()
+  const initValues = props.contact ? props.contact : {
     username: '',
     email: '',
     phone: '',
-  })
+    id: uuid_v4()
+  }
+
+  const { values, loading, handleChange, onSubmit, errors } = useForm(handleSubmit, initValues, props.setOpen)
+
+  function handleSubmit() {
+    if(props.contact) {
+      const id = ContactsList.findIndex(c => c.id === props.contact.id)
+      ContactsList[id] = values
+      editContact(values)
+      props.setContactList(ContactsList)
+    } else {
+      props.setContactList?.(ContactsList.concat(values))
+      addContact(values)
+    }
+  }
   
 
   return (
@@ -53,7 +70,7 @@ const DefaultForm = (props) => {
             </ul>
           </div>
         )}
-        <ButtonGroup floated fluid>
+        <ButtonGroup fluid>
           <Button color='black' onClick={() => props.setOpen(false)}>
             დახურვა
           </Button>
@@ -62,10 +79,6 @@ const DefaultForm = (props) => {
             content={props.addOrEdit}
             labelPosition='right'
             icon='checkmark'
-            onClick={(e) => {
-              onSubmit(e)
-              // props.setOpen(false)
-            }}
             positive
           />
         </ButtonGroup>

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { validateProductsInput } from './validators'
 
-export const useForm = (callback, initialState = {}) => {
+export const useForm = (callback, initialState = {}, clModal = null) => {
   const [values, setValues] = useState(initialState)
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -22,11 +22,17 @@ export const useForm = (callback, initialState = {}) => {
 
   useEffect(() => {
     // Check to see if there are no errors this will run only when submitting
-    if (Object.keys(errors).length === 0 && loading) callback()
+    if (Object.keys(errors).length === 0 && loading) {
+      callback()
+      setTimeout(() => {
+        clModal?.(false)
+      }, 500);
+    }
     
 
     setTimeout(() => {
       setLoading(false)
+
     }, 300);
   }, [errors])
 
