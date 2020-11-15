@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { List } from 'semantic-ui-react'
+import { Header, Segment } from 'semantic-ui-react'
 import ContactsListItem  from './ContactsListItem'
 
 const ListItemsFloated = ({contactList, setContactList}) => {
@@ -9,12 +9,12 @@ const ListItemsFloated = ({contactList, setContactList}) => {
     if(contactList.length) {
       return contactList.map(item => <ContactsListItem setContactList={setContactList} contactList={contactList}  key={item.id} item={item} />)
     }
-    return <p>კონტაქტები ცარიელია</p>
+    return <Header as="h5" textAlign="center">კონტაქტები ცარიელია</Header>
   }
   return (
-    <List divided verticalAlign='middle'>
+    <Segment>
       {renderContactsList()}
-    </List>
+    </Segment>
   )
 }
 

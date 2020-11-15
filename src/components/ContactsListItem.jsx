@@ -1,5 +1,5 @@
-import React, { useState} from 'react'
-import { Button, List, Modal } from 'semantic-ui-react'
+import React, { useState } from 'react'
+import { Button, List, Modal, Card, Icon } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 import ModalWithForm from '../components/Modal'
 // DATABASE
@@ -21,7 +21,7 @@ const ListItem = (props) => {
   }
   
   return (
-    <List.Item style={{ padding: '1rem', borderBottom: '1px solid gray' }}>
+    <Card color="blue"  fluid style={{ padding: '1rem'}}>
       <ModalWithForm
         setContactList={setContactList}
         contact={contact} 
@@ -43,17 +43,23 @@ const ListItem = (props) => {
           <Button positive onClick={handleDelete}>კი</Button>
         </Modal.Actions>
       </Modal>
-      <List.Content floated='right'>
-        <Button color="red" onClick={() => setIsDelete(true)}>წაშლა</Button>
-        <Button color="orange" onClick={() => setOpen(true)}>ცვლილება</Button>
-      </List.Content>
-      <List.Description>
-        <p>აიდი: {contact.id}</p>
-        <p>დასახელება: {contact.username} </p>
-        <p>ტელეფონი: {contact.phone} </p>
-        <p>ელ.ფოსტა: {contact.email} </p>
-      </List.Description>
-    </List.Item>
+      <List divided>
+        <List.Content floated="right">
+          <Button icon color="red" onClick={() => setIsDelete(true)}>
+            <Icon name='delete' /> წაშლა
+          </Button>
+          <Button icon color="orange" onClick={() => setOpen(true)}>
+            <Icon name='edit' /> ცვლილება
+          </Button>
+        </List.Content>
+        <List.Description>
+          <p>აიდი: {contact.id}</p>
+          <p>დასახელება: {contact.username} </p>
+          <p>ტელეფონი: {contact.phone} </p>
+          <p>ელ.ფოსტა: {contact.email} </p>
+        </List.Description>
+      </List>
+    </Card>
   )
 }
 

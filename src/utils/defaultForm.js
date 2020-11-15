@@ -92,10 +92,10 @@ const DefaultForm = (props) => {
 
 DefaultForm.propTypes = {
   setOpen: PropTypes.func,
-  contact: PropTypes.func,
+  contact: PropTypes.object,
   setContactList: PropTypes.func,
   addOrEdit: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 }
 
 export default DefaultForm

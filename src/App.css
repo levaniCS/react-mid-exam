@@ -23,10 +23,12 @@
   background-color: #00b5ad;
 }
 
-.ui.primary.button {
+.ui.green.button {
   height: 100%;
+  white-space: nowrap;
+  padding: 1rem;
+  letter-spacing: 1px;
 }
-
 
 .ui.form .error.message, 
 .ui.form .success.message, 
