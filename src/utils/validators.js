@@ -25,7 +25,7 @@ export const validateProductsInput = ({
   } else {
     const regEx = /^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i
     if (!phone.match(regEx)) {
-      errors.email = 'ნომერი არ არის ვალიდური';
+      errors.phone = 'ნომერი არ არის ვალიდური';
     }
   }
 

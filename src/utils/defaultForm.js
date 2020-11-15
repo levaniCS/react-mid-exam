@@ -20,11 +20,13 @@ const DefaultForm = (props) => {
 
   function handleSubmit() {
     if(props.contact) {
+      // Change UI when contact edited
       const id = ContactsList.findIndex(c => c.id === props.contact.id)
       ContactsList[id] = values
       editContact(values)
       props.setContactList(ContactsList)
     } else {
+      // Change UI when contact added
       props.setContactList?.(ContactsList.concat(values))
       addContact(values)
     }

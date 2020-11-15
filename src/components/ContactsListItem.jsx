@@ -11,6 +11,7 @@ const ListItem = (props) => {
   const [open, setOpen] = useState(false)
   const [isDeleting, setIsDelete] = useState(false)
 
+  // Remove contact from Localhost & Upadate UI
   const handleDelete = () => {
     deleteContact(contact.id)
     setTimeout(() => {

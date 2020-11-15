@@ -23,6 +23,8 @@ const App = () => {
   })
 
 
+  // Filter Functionality
+  // Re-run if search value changes
   useEffect(() => {
     const { dropDown, searchValue } = searchForm
     const data = getContacts().filter(item => item[dropDown].toLowerCase().includes(searchValue.toLowerCase()))
