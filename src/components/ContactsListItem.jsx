@@ -10,21 +10,24 @@ const ListItem = (props) => {
   const { item: contact, setContactList, contactList } = props
   const [open, setOpen] = useState(false)
   const [isDeleting, setIsDelete] = useState(false)
+  const currentContact = contactList.find(item => item.id === contact.id)
 
-  // Remove contact from Localhost & Upadate UI
+
+  // Remove contact from firebase & Upadate UI
   const handleDelete = () => {
-    deleteContact(contact.id)
+    deleteContact(currentContact.key)
     setTimeout(() => {
       setIsDelete(false)
-      setContactList(contactList.filter(c => c.id !== contact.id))
+      setContactList(contactList.filter(c => c.id !== currentContact.id))
     }, 300)
   }
   
   return (
     <Card color="blue"  fluid style={{ padding: '1rem'}}>
       <ModalWithForm
+        contactList={contactList}
         setContactList={setContactList}
-        contact={contact} 
+        contact={currentContact} 
         addOrEdit="ცვლილება"  
         open={open} 
         setOpen={setOpen}
@@ -53,10 +56,10 @@ const ListItem = (props) => {
           </Button>
         </List.Content>
         <List.Description>
-          <p>აიდი: {contact.id}</p>
-          <p>დასახელება: {contact.username} </p>
-          <p>ტელეფონი: {contact.phone} </p>
-          <p>ელ.ფოსტა: {contact.email} </p>
+          <p>აიდი: {currentContact.id}</p>
+          <p>დასახელება: {currentContact.username} </p>
+          <p>ტელეფონი: {currentContact.phone} </p>
+          <p>ელ.ფოსტა: {currentContact.email} </p>
         </List.Description>
       </List>
     </Card>

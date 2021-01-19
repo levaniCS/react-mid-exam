@@ -1,14 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Header, Segment } from 'semantic-ui-react'
+import { Header, Segment, Loader } from 'semantic-ui-react'
 import ContactsListItem  from './ContactsListItem'
 
-const ListItemsFloated = ({contactList, setContactList}) => {
+const ListItemsFloated = ({contactList, setContactList, loading}) => {
   const renderContactsList = () => {
-    if(contactList.length) {
+    if(contactList?.length) {
       return contactList.map(item => <ContactsListItem setContactList={setContactList} contactList={contactList}  key={item.id} item={item} />)
     }
+
+    if(loading) {
+      return <Loader />
+    }
+
     return <Header as="h5" textAlign="center">კონტაქტები ცარიელია</Header>
   }
   return (

@@ -15,8 +15,9 @@ import Search from './components/Search'
 import { getContacts } from './dbService'
 
 const App = () => {
-  const [contactList, setContactList] = useState(getContacts())
+  const [contactList, setContactList] = useState([])
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [searchForm, setSearchForm] = useState({
     dropDown: 'username',
     searchValue: ''
@@ -26,11 +27,25 @@ const App = () => {
   // Filter Functionality
   // Re-run if search value changes
   useEffect(() => {
-    const { dropDown, searchValue } = searchForm
-    const data = getContacts().filter(item => item[dropDown].toLowerCase().includes(searchValue.toLowerCase()))
-    
-    setContactList(data)
+    getContacts().on('value', onDataChange)
   }, [searchForm.searchValue])
+
+
+  const onDataChange = (items) => {
+    setLoading(true)
+    const { dropDown, searchValue } = searchForm
+    let contacts = [] 
+
+    items.forEach((item) => {
+      let key = item.key;
+      let data = item.val();
+      contacts.push({key, ...data})
+    })
+
+    contacts = contacts.filter(item => item[dropDown].toLowerCase().includes(searchValue.toLowerCase())) 
+    setContactList(contacts)
+    setLoading(false)
+  }
 
 
   return (
@@ -54,7 +69,7 @@ const App = () => {
       </div>
       <Header block dividing>კონტაქტების სია</Header>
       <Header.Content>
-        <ContactsList contactList={contactList} setContactList={setContactList}/>
+        <ContactsList loading={loading} contactList={contactList} setContactList={setContactList}/>
       </Header.Content>
     </Container>
   )

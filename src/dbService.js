@@ -1,22 +1,8 @@
-export const getContacts = () =>  JSON.parse(localStorage.getItem('contacts')) || []
+import firebaseService from './firebaseConfig'
 
-export const addContact = (contact) => {
-   const contacts = getContacts()
-   const contactArray = [...contacts, contact]
-   localStorage.setItem('contacts', JSON.stringify(contactArray))
-}
+const contactRef = firebaseService.database().ref('contacts')
 
-
-export const deleteContact = (contactId) => {
-   const contacts = getContacts().filter(contact => contact.id !== contactId)
-   localStorage.setItem('contacts', JSON.stringify(contacts))
-}
-
-export const editContact = (contact) => {
-   let contacts = getContacts()
-   const editedContactIndx = contacts.findIndex(ct => ct.id === contact.id)
-   if(editedContactIndx !== -1){
-      contacts[editedContactIndx] = contact
-      localStorage.setItem('contacts', JSON.stringify(contacts))
-   }
-}
+export const getContacts = () => contactRef
+export const addContact = (contact) => contactRef.push(contact)
+export const deleteContact = (key) => contactRef.child(key).remove()
+export const editContact = (contact) => contactRef.child(contact.key).update(contact)

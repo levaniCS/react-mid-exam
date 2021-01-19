@@ -5,10 +5,10 @@ import PropTypes from 'prop-types'
 import { useForm } from '../utils/useForm'
 import { v4 as uuid_v4 } from "uuid";
 // DATABASE
-import {addContact, editContact, getContacts} from '../dbService'
+import { addContact, editContact } from '../dbService'
 
 const DefaultForm = (props) => {
-  const ContactsList = getContacts()
+  const ContactsList = props.contactList
   const initValues = props.contact ? props.contact : {
     username: '',
     email: '',
@@ -22,8 +22,8 @@ const DefaultForm = (props) => {
     if(props.contact) {
       // Change UI when contact edited
       const id = ContactsList.findIndex(c => c.id === props.contact.id)
-      ContactsList[id] = values
-      editContact(values)
+      ContactsList[id] = {key: ContactsList[id].key ,...values}
+      editContact({key: ContactsList[id].key ,...values})
       props.setContactList(ContactsList)
     } else {
       // Change UI when contact added
